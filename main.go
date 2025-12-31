@@ -71,8 +71,8 @@ func main() {
 		fmt.Fprintf(os.Stderr, "    deathhound -mode shortest-path\n\n")
 		fmt.Fprintf(os.Stderr, "  Run from file (bypasses shell escaping issues):\n")
 		fmt.Fprintf(os.Stderr, "    deathhound -file my_query.cypher\n\n")
-		fmt.Fprintf(os.Stderr, "  Connect to a specific Neo4j instance:\n")
-		fmt.Fprintf(os.Stderr, "    deathhound -u neo4j -p Secret -url bolt://192.168.1.10:7687 -mode domain-admins\n\n")
+		fmt.Fprintf(os.Stderr, "  Connect to a specific Neo4j instance with custom query file:\n")
+		fmt.Fprintf(os.Stderr, "    deathhound -u admin -p \"SupersecretPassword123\" -url bolt://127.0.0.1:17687 -file .\\tempquery\n\n")
 	}
 	flag.Parse()
 

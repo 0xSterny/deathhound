@@ -63,17 +63,10 @@ Execute the built-in Kerberoasting query:
 ./deathhound -mode kerberoast
 ```
 
-### 3. Custom Query from File
-Execute a complex custom Cypher query stored in a file:
+### 3. Custom Connection & File Query
+Connect to a remote instance with custom credentials and run a query file:
 ```bash
-./deathhound -file query.cyp
-```
-
-### 4. Interactive Mode (Stdin)
-Paste a query directly into the terminal (useful for complex queries):
-```bash
-./deathhound
-# Paste your query, then press Ctrl+Z (Windows) or Ctrl+D (Linux) followed by Enter
+./deathhound -u admin -p "SupersecretPassword123" -url bolt://127.0.0.1:17687 -file ./tempquery
 ```
 
 ## Installation
