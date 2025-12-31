@@ -1,5 +1,7 @@
 # DeathHound
 
+![DeathHound](assets/deathhound-run.png)
+
 **DeathHound** is a headless, cross-platform Command Line Interface (CLI) for executing BloodHound queries against a Neo4j database. It allows operators to run attack primitives, audit queries, and custom Cypher queries directly from the terminal without needing the BloodHound GUI.
 
 Designed for efficiency and automation, DeathHound outputs strictly formatted JSON, making it ideal for piping into other tools (like `jq`) or integrating into larger offensive pipelines.
