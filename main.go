@@ -96,6 +96,12 @@ func main() {
 			log.Fatalf("Failed to read file: %v", err)
 		}
 		cypher = string(content)
+		cypherTrimmed := strings.TrimSpace(cypher)
+		// Auto-fix for common missing RETURN p error
+		if strings.HasPrefix(strings.ToUpper(cypherTrimmed), "MATCH P=") && !strings.Contains(strings.ToUpper(cypherTrimmed), "RETURN") {
+			cypher += " RETURN p"
+			fmt.Fprintf(os.Stderr, "Warning: Appended 'RETURN p' to query as it appeared to be missing.\n")
+		}
 	} else if *modePtr != "" {
 		if *modePtr == "list" {
 			// Group by Category
@@ -184,7 +190,7 @@ func runQuery(ctx context.Context, driver neo4j.DriverWithContext, cypher string
 			return nil, err
 		}
 
-		var results []map[string]any
+		results := make([]map[string]any, 0)
 		for records.Next(ctx) {
 			rec := records.Record()
 
@@ -210,6 +216,9 @@ func runQuery(ctx context.Context, driver neo4j.DriverWithContext, cypher string
 	})
 
 	if err != nil {
+		if strings.Contains(err.Error(), "SyntaxError") && strings.Contains(err.Error(), "RETURN") {
+			return "", fmt.Errorf("%w\nHint: Ensure your Cypher query ends with a RETURN clause.", err)
+		}
 		return "", err
 	}
 
