@@ -1,0 +1,23 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+deathhound
+deathhound-linux-amd64
+
+# Output directories
+final/
+dist/
+bin/
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# Artifacts and Temp files
+implementation_plan.md
+task.md
+walkthrough.md
+temp_queries/
+*.log
